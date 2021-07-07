@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ObserveIt</title>
+    <link rel="shortcut icon" type="image/png" href="observationicon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/markerjs2/markerjs2.js"></script>
+    <script src="script.js" defer></script>
+    <!-- <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> -->
+    <style></style>
+  </head>
+  <body>
+    <header>
+      <h1 id="header">ObserveIt</h1>
+    </header>
+
+    <div id="features">
+      <h1>Welcome to ObserveIt</h1>
+      <p>
+        This is a companion app to the chapter by Bengsch, G. (2021).
+        Observations. In Abigail Parrish & Ghazal Syed. A Quick Guide to
+        Research Methods for Dissertations in Education. Bloomsberry.
+      </p>
+      <h2>Features</h2>
+      <p></p>
+
+      <ul>
+        <li>Practice observing and taking notes</li>
+        <li>
+          Download your notes in csv format to use in other software, such as
+          Excel or NVivo
+        </li>
+        <li>Take additional notes that downloads into .txt format</li>
+        <li>
+          Capture screenshots with timestamps (to save displayed screenshot,
+          please right-click and select save image as)
+        </li>
+      </ul>
+
+      <h2>How to use</h2>
+      <p>
+        Watch the video and fill in the form according to the notes in the
+        chapter. You can also use the form to make notes on your own material
+        and download it into a csv file to further work with in another piece of
+        software.
+      </p>
+      <i>Please note: No data is stored on this website. Please make sure to download your notes and save your screenshot before refreshing the page!</i>
+    </div>
+
+    <div id="maincontent">
+      <div class="wrap">
+        <video class="audio" id="video" width="320" controls="true">
+          <source
+            src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+          />
+          <!-- FireFox 3.5 -->
+          <source
+            src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+          />
+          <!-- WebKit -->
+          Your browser does not support HTML5 video tag. Please download FireFox
+          3.5 or higher.
+        </video>
+        <br />
+        <button
+          class="Btn"
+          id="cit"
+          onclick="shoot();ShowAndHide()"
+          class="button"
+        >
+          Capture screenshot
+        </button>
+
+        <div id="picwrap" style="display: none">
+          <div id="output"></div>
+          <div
+            id="res"
+            style="font-weight: bold; color: white; padding: 15px"
+            class="result"
+          ></div>
+        </div>
+      </div>
+
+      <!--Main form-->
+      <div id="form">
+        <table class="entries">
+          <tr>
+            <th id="title">Title</th>
+            <td>
+              <input type="text" id="txtName" placeholder="Enter the title of your observation" />
+            </td>
+          </tr>
+
+          <tr>
+            <th>Date</th>
+            <td>
+              <input type="text" id="currentDate" />
+            </td>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <td>
+              <input
+                type="text"
+                id="txtEmail"
+                placeholder="Enter your email address"
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <td>
+              <select id="selCountry">
+                <option selected value="">-- Choose the country --</option>
+                <option value="India">India</option>
+                <option value="Japan">Japan</option>
+                <option value="USA">USA</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <td>
+              <textarea
+                id="msg"
+                name="msg"
+                placeholder="Take some notes ..."
+                style="height: 100px; padding: 25px"
+              ></textarea>
+            </td>
+          </tr>
+        </table>
+        <!--Add to button to save the data.-->
+        <div>
+          <input
+            type="button"
+            id="bt"
+            value="Save data to CSV file"
+            onclick="saveFile()"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- other notes -->
+    <h2>Any other thoughts?</h2>
+    <p>
+      Use this area to note down anything you want to keep track of that does
+      not have a category in the field notes.
+    </p>
+    <textarea id="text-val"></textarea>
+    <input type="button" id="dwn-btn" value="Download notes as text file" />
+  </body>
+
+  <footer>
+    <p>© Rapunzelle Art & Design 2021</p>
+  </footer>
+
+  <script>
+    //csv download file
+    var today = new Date();
+    var date =
+      today.getDate() +
+      "/" +
+      (today.getMonth() + 1) +
+      "/" +
+      today.getFullYear();
+
+    document.getElementById("currentDate").value = date;
+    let saveFile = () => {
+      // Get the data from each element on the form.
+      const name = document.getElementById("txtName");
+      const date = document.getElementById("currentDate");
+      const email = document.getElementById("txtEmail");
+      const country = document.getElementById("selCountry");
+      const msg = document.getElementById("msg");
+      const title = document.getElementById("title");
+
+      // This variable stores all the data.
+      let data =
+        //next two lines as 'header title'
+        "Title" +
+        " , " +
+        " Name: " +
+        name.value +
+        //r creates new row, comma to separate for csv
+        " \r , " +
+        "Age: " +
+        date.value +
+        " \r , " +
+        "Email: " +
+        email.value +
+        " \r , " +
+        "Country: " +
+        country.value +
+        " \r , " +
+        "Message: " +
+        msg.value;
+
+      // Convert the text to BLOB.
+      const textToBLOB = new Blob([data], { type: "text/csv" });
+      const sFileName = "observationData.csv"; // The file to save the data.
+
+      let newLink = document.createElement("a");
+      newLink.download = sFileName;
+
+      if (window.webkitURL != null) {
+        newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+      } else {
+        newLink.href = window.URL.createObjectURL(textToBLOB);
+        newLink.style.display = "none";
+        document.body.appendChild(newLink);
+      }
+
+      newLink.click();
+    };
+  </script>
+  <script>
+    function showMarkerArea(target) {
+      const markerArea = new markerjs2.MarkerArea(target);
+      markerArea.addRenderEventListener((imgURL) => (target.src = imgURL));
+      markerArea.show();
+    }
+  </script>
+</html>
