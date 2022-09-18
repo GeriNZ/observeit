@@ -22,7 +22,7 @@
     <div id="features">
       <h1>Welcome to ObserveIt</h1>
       <p>
-        This is a companion app to the chapter by Bengsch, G. (2021).
+        This is a companion app to the chapter by Bengsch, G. (2022).
         Observations. In Abigail Parrish & Ghazal Syed. A Quick Guide to
         Research Methods for Dissertations in Education. Bloomsberry.
       </p>
@@ -65,7 +65,7 @@
 
     <div id="maincontent">
       <div class="wrap">
-        <video class="audio" id="video1" width="320" controls="true">
+        <video class="audio" id="video1"  controls="true">
           <source
             src="video/Telling People Nonsense in Huntington Beach, California.mp4"
           />
@@ -189,6 +189,21 @@
               ></textarea>
             </td>
           </tr>
+
+          <p>Current timestamp: </p>
+          <p ></p>
+          <p id="stamp" onclick="setText(this)" >asd </p>
+
+
+
+
+          <!-- <ul onclick="setText(this)" id="list">
+            <li><a href="#">Item 1</a></li>
+            <li><a href="#">Item 2</a></li>
+            <li><a href="#">Item 3</a></li>
+          </ul> -->
+
+
         </table>
         <!--Add to button to save the data.-->
         <div>
@@ -216,7 +231,11 @@
         <li>What will be selected for analysis</li>
         <li>Extracts for reporting, for focus and summary highlighting</li>
     </ul>
-    <textarea id="text-val"></textarea>
+    <textarea id="text-val"
+    onkeyup="countChars('text-val','charcount');" onkeydown="countChars('text-val','charcount');" onmouseout="countChars('text-val','charcount');"></textarea><br>
+<span id="charcount">0</span> characters entered.
+    
+   
     <input type="button" id="dwn-btn" value="Download notes as text file" />
   </body>
 

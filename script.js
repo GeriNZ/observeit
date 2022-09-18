@@ -142,13 +142,23 @@ function shoot() {
 let resEle = document.querySelector(".result");
 let BtnEle = document.querySelector(".Btn");
 let audioEle = document.querySelector(".audio");
+let stamp = document.querySelector(".stamp");
 
 BtnEle.addEventListener("click", () => {
   resEle.innerHTML = "Minutes = " + Math.floor(audioEle.currentTime / 60) + "";
   resEle.innerHTML +=
     " Seconds = " + Math.floor(audioEle.currentTime % 60) + "";
+
 });
 
+
+const list = document.getElementById("list");
+
+function setText(e){
+  e.innerHTML = resEle.innerHTML;
+
+
+   }
 
 //-----------------------------------------------------------
 //show or hide the div picwrap
@@ -253,6 +263,13 @@ function capture1(video, scaleFactor) {
     var captureit = document.getElementById("cit1");
     captureit.click();
   })();
-  
+
+//------------------------------------------------------------
+
+// count characters in textfield
+function countChars(countfrom,displayto) {
+  var len = document.getElementById(countfrom).value.length;
+  document.getElementById(displayto).innerHTML = len;
+}
 
 
