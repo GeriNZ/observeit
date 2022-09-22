@@ -28,6 +28,47 @@ h2 {
   font-family: "Raleway", sans-serif;
 }
 
+/* The hero image */
+.hero {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  
+ }
+ .hero img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  filter: brightness(50%);
+  
+ }
+ .hero .hero-text {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  z-index: 1;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+ }
+
+/* Place text in the middle of the image */
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 300%;
+  -webkit-text-stroke:1px var(--teal);
+}
+
+
+
 table {
   width: 800px;
   padding: 40px;
@@ -154,4 +195,74 @@ header {
 
 #video1 {
   width: 90% !important;
+}
+
+
+/* Dotted border */
+.divider {
+  border-top: 3px dotted #bbb;
+  margin: 50px;
+  
+}
+
+/* style for info cards */
+
+.card-bg {
+  display: flex;
+  box-sizing: border-box;
+  background: var(--teal);
+  width: 100%;
+  padding: 20px;
+  /* display: grid;
+  grid-template-columns: repeat(3); */
+  
+}
+
+
+.card {
+  width: 320px;
+  height: 500px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 8px solid white;
+  position: relative;
+  margin: 5px;
+  /* display: grid;
+  grid-template-columns: repeat(3); */
+
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  margin: 0px;
+}
+
+.card-body {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: -100%;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  border-radius: 15px;
+  margin: 0px;
+  color: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: centre;
+}
+
+.card:hover .card-body{
+right: 0;
+transition: 0.5s;
+}
+
+.card-info {
+margin-top: 20px;
+margin-bottom: 20px;
 }

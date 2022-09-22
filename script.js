@@ -89,7 +89,7 @@ window.onbeforeunload = function () {
 
 
 var videoId = "video1";
-var scaleFactor = 0.25;
+var scaleFactor = 0.75;
 var snapshots = [];
 
 /**
