@@ -10,6 +10,8 @@
     <script src="https://unpkg.com/markerjs2/markerjs2.js"></script>
     <script src="script.js" defer></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
     <!-- <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> -->
     <style></style>
@@ -175,14 +177,15 @@
         <p>Credit: Jack Vale Films on YouTube</p> <a href="https://www.youtube.com/watch?v=je3APM6Sn5o">video source here</a>
         <br />
 
-        <button class="Btn" id="cit" type="submit" onclick="window.open('video/transcript.txt')">Download transcript</button>
+
+        <button class="Btn" id="cit" type="submit" onclick="window.open('video/transcript.txt')"> <i class="fa fa-download"></i>Download transcript</button>
         <button
           class="Btn"
           id="cit"
           onclick="shoot();ShowAndHide()"
           class="button"
         >
-          Capture screenshot
+        <i class="fa fa-camera"></i> Capture screenshot
         </button>
 
         <!-- add this for the pictures to show marker thing
@@ -289,9 +292,9 @@
             </td>
           </tr>
 
-          <p>Current timestamp: </p>
+          <!-- <p>Current timestamp: </p>
           <p ></p>
-          <p id="stamp" onclick="setText(this)" >asd </p>
+          <p id="stamp" onclick="setText(this)" >asd </p> -->
 
 
 
